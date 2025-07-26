@@ -19,7 +19,8 @@
     padding: 0;
     border: none;
     flex: 0 0 100%;
-    margin-top: -275px;
+    margin-top: -235px; /* Move image up to center the "Paperetti" text */
+    margin-bottom: -235px; /* Cut off bottom to make spacing equal */
 }
 
 .slider-wrapper {
@@ -54,7 +55,7 @@
 }
 
 .about-section p em {
-    color: #007bff;
+    color: black;
     font-style: italic;
     font-weight: 500;
 }
@@ -122,7 +123,7 @@
 .products-underline {
     width: 80px;
     height: 3px;
-    background-color: #007bff;
+    background-color: #dbc49e;
     margin: 0 auto 30px;
     border-radius: 2px;
 }

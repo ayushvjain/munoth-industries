@@ -1,38 +1,28 @@
-// src/components/navbar.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import './navbar.css'; // Keep this for styling
-import logo from '../assets/logo-2.png';  
+import './navbar.css';
+import logo from '../assets/logo-3.png';
 
 function Navbar() {
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 10) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <>
-            <div className="top-bar">
-                <div className="contact">
-                    <span className="icon">
-                        <i className="fa fa-envelope"></i>
-                    </span>
-                    <a href="mailto:munothindustries@gmail.com">munothindustries@gmail.com</a>
-                    <span> | </span>
-                    <span className="icon">
-                        <i className="fa fa-phone"></i>
-                    </span>
-                    <span>(+91) 8754595600 | 7639754545 | +914445824897</span>
-                </div>
-                <div className="social-icons">
-                    {/* <a href="#"><i className="fa fa-facebook"></i></a>
-                    <a href="#"><i className="fa fa-twitter"></i></a>
-                    <a href="#"><i className="fa fa-instagram"></i></a> */}
-                </div>
-            </div>
-
-            {/* Main nav header with logo and links */}
-            <header className="main-header">
-                <img
-                    src={logo}
-                    alt="Logo"
-                    className="logo"
-                />
+            <header className={`main-header ${scrolled ? 'scrolled' : ''}`}>
+                <img src={logo} alt="Logo" className="logo" />
                 <nav className="nav-bar">
                     <NavLink to="/" exact="true">HOME</NavLink>
                     <NavLink to="/about">ABOUT US</NavLink>
@@ -40,6 +30,8 @@ function Navbar() {
                     <NavLink to="/contact">CONTACT US</NavLink>
                 </nav>
             </header>
+
+            <div className="header-spacer"></div>
         </>
     );
 }
